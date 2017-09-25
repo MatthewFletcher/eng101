@@ -143,21 +143,15 @@ clear;
 n=1000000;
 
 %Form  odd series
-oddSeries=1:2:n;
+oddSeries=1:2:N;
 
 %Form signs
 signs=0:(length(oddSeries)-1);
 
 %Form alternating signs
-altsigns=(-1).^signs;
 
-%Create pi vector
-pivector=4*sum(altsigns./oddSeries);
-
-%Printing pretty crap
-fprintf("\n\n\nProblem 3, finding Leibnitz sum with 1000000 iterations \n \n \n ")
 %Form summation
-fprintf ('Sum= %6f\n',pivector)
+fprintf ('Sum= %2.6E\n',my_sum)
         
         
     

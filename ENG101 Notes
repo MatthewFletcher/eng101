@@ -1,0 +1,171 @@
+ENG101 Notes
+
+ver shows long version number
+
+
+home cleras your screen by scrolling
+clc cleras your screen by deleting 
+
+
+help command gives man page for command
+
+Community helps you when you don't know what you need (basically a matlab google)
+
+help command gives you a text only version of help 
+
+
+lookfor essentially googles the command in matlab's database
+
+
+You can import data using the GUI in matlab
+
+matlab previews data when you import a .xlsx file, shows the range in a preview of the data
+
+Importing data as a set of column vectors results in the columns being imporrted individually 
+
+
+
+%Import the batting averages for little league
+%Use the variable to replace the omitting with zero
+
+%Form column vectors for year, and the respective averages for players 
+
+
+
+Software profiling can be used to show which parts of your code are takin gthe longest to run 
+
+Keep track of size of variables for plotting
+
+Plot toolbar helps with making graph look pretty
+
+Use a semicolon to surpress output, use a % to make a comment
+
+No need to declare variable before making variable assignment 
+
+
+
+Scalar is 1 row, 1 column 
+Row vector is 1 row and n columns
+Column Vector is m rows and 1 column 
+A matrix is m rows, and n columns 
+
+
+Row vectors input using commas or spaces in between square brackets
+
+Column vectors entered using semicolons and square brackets 
+
+Row vectors entered in 1 of 2 ways:
+1. If you want to know the interval, enter using range operator rowV=a:dx:b %from a to b with interval dx, b is NOT necessarily in the vector unless it is exactly on the dot 
+2/ If you want to know the number of points, us rowV=linspace(a,b,n) %a to b, with n points between the two 
+
+
+
+A=ones(3,3) makes a matrix full of ones
+A=zeros(3,3) makes a matrix full of zeros
+A=eye(3,3) makes an identity matrix 
+
+
+A(3,4) gets index at row 3, column 4
+A(end,end) gets index at bottom right hand corner
+To grab pieces of matrix, us A([2 3],[3,4]) (this grabs )
+
+To multiply individual aspects of a matrix, use .* and it will mutliply individual components of the matrix 
+
+Scalars will expand for mutliplication of a vecto r
+
+
+Multiplying A (an m by n matrix) and B (an x by y matrix) results in a m by y matrix. 
+
+
+Use == as comparator in logical assignment
+
+isequal(a,b) shows if the 2 variables are the same type
+
+
+
+String comparison operators
+
+
+~= = !=
+
+
+strcmp is a string comparison, checks if the strings are identical 
+
+AND, OR, and NOT are primitive logical operators
+
+
+any(x==y) checks if ANY aspects of either vector are equal, while all(x==y) checks if ALL aspects are equal
+
+When dealing with vectors, any(a==b) checks column by column 
+
+
+
+
+Programming in MatLab
+
+Use tic and toc as  qquick way of assessing the performance of your program 
+Use tic to start a clock, use toc to stop it. 
+
+Analyze code feature shows where you can improve your code 
+
+
+
+
+Flow controal through selection. 
+
+If structure: if true, do this otherwise do that. 
+If elseif structure, if true do this, if false do that. 
+
+Switch structrue
+
+switch n;
+	case case1
+		do this
+	case case2
+		do that
+	otherwise
+		do something else
+done
+
+
+
+[x,y]=myfunction(a,b,c) is a function that takes a,b,c as inputs and returns x and y as outputs 
+
+Matlab Functions 
+Anonymous function (will be on test)
+
+Private functionL
+To make a private function, make a folder amed private, move the function file into the subfolder. 
+Private folder cannot be added to the matlab search path 
+Can only be called by functions in the same folder, or from the command line if the private folder is the current folder. 
+
+Local functions group several functions of 1 application into a single file. 
+ML searches by file and not function name, only the first function wtih each file ca be called from outside the file. 
+
+Nested functions:
+Used to bundle several functions of one application into a single file 
+ALlow for hiding functionality from the user. 
+Share workspace so they don't ahve to explicity pass variables. 
+
+
+Anonymous function
+
+f= @sin %allows you to use f instead of sin, essentially uses another name for function 
+
+fzero allows you to find zeroes of a function 
+
+
+
+
+
+calendarDuration(year, month, day)
+
+datetime plus some number increments in days
+
+between(datetime1, datetime2) gives year month day hour second.millisecond between 2 dates
+
+
+week(CurrentTime) gives what week of the year it is 
+day(datetime, 'name') gibes name of day of datetime
+
+day(myBirthday+calyears(n), 'name') adds n years to birthday year and prints out name of day that birthday falls on 

@@ -1,0 +1,434 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW3P1</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-17"><meta name="DC.source" content="HW3P1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Problem Selector</a></li><li><a href="#4">Problem 1</a></li><li><a href="#6">Housekeeping</a></li><li><a href="#7">Computations</a></li><li><a href="#8">Output</a></li><li><a href="#9">Problem 2</a></li><li><a href="#12">Housekeeping</a></li><li><a href="#13">Setup</a></li><li><a href="#14">Problem 3</a></li></ul></div><pre class="codeinput"><span class="comment">%    _     _      _     _      _     _      _     _      _     _</span>
+<span class="comment">%   (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)</span>
+<span class="comment">%    / ._. \      / ._. \      / ._. \      / ._. \      / ._. \</span>
+<span class="comment">%  __\( Y )/__  __\( Y )/__  __\( Y )/__  __\( Y )/__  __\( Y )/__</span>
+<span class="comment">% (_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)</span>
+<span class="comment">%    || O ||      || O ||      || O ||      || O ||      || O ||</span>
+<span class="comment">%  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._</span>
+<span class="comment">% (.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)</span>
+<span class="comment">%  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'</span>
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%   Author:  Matt Fletcher                                          %</span>
+<span class="comment">%    Class:  ENG101, Fall, 2017                                     %</span>
+<span class="comment">%  Helpers:  None                                                   %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">%  Program:  ENG101 Homework 3, Problem 1                           %</span>
+<span class="comment">% Due Date:  18 Sep 2017                                            %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">% Language:  MatLab                                                 %</span>
+<span class="comment">%      IDE:  MatLab R2017a                                          %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">% Purpose:   Simulate die rolls                                     %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">%                                                                   %</span>
+<span class="comment">%   "Undocumented features": None.                                  %</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% Important Note for grader    %</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">%I wrote all 3 problems with a switch statement to help</span>
+<span class="comment">% prevent problems caused by multiple program's variables</span>
+<span class="comment">%To use each program, simply follow the instructions prompted at the</span>
+<span class="comment">%beginning.</span>
+
+
+clear;
+clc;
+</pre><h2 id="2">Problem Selector</h2><pre class="codeinput">disp(<span class="string">'Which problem would you like to try?'</span>)
+disp(<span class="string">'1. Die Roll'</span>)
+disp(<span class="string">'2. Electrical current'</span>)
+disp(<span class="string">'3. Flying ball'</span>)
+choice=input(<span class="string">'Enter your choice number here&gt;&gt;&gt; '</span>);
+    <span class="comment">%Switch statement</span>
+    <span class="keyword">switch</span>(choice);
+</pre><h2 id="4">Problem 1</h2><pre class="codeinput">    <span class="comment">%If 1 is selected, do problem 1</span>
+    <span class="keyword">case</span>(1)
+</pre><pre class="codeinput">        <span class="comment">%%%%%%%%%%%%%%%%%</span>
+        <span class="comment">%   Problem 1   %</span>
+        <span class="comment">%%%%%%%%%%%%%%%%%</span>
+</pre><h2 id="6">Housekeeping</h2><pre class="codeinput">        clear;
+</pre><h2 id="7">Computations</h2><pre class="codeinput">        <span class="comment">%Cue user to input the number of trials they would like to try</span>
+
+        n_trials=input(<span class="string">'How many trials &gt;&gt;  '</span>);
+
+
+
+        <span class="comment">%Generate random die rolls"</span>
+        die_roll=randi(6,[1,n_trials]);
+
+        <span class="comment">%Calculate the probability of rolling a 6</span>
+        prob_6=sum(die_roll==6)/n_trials;
+</pre><h2 id="8">Output</h2><pre class="codeinput">        <span class="comment">%Display the number of rolls:</span>
+        fprintf(<span class="string">'Number of rolls: %d rolls. \n'</span>, n_trials)
+
+
+        <span class="comment">%Display the probability of getting a 6</span>
+        fprintf(<span class="string">'Probability of a rolling a 6: %.5f percent. \n'</span>, prob_6)
+
+
+        <span class="comment">%Finds the positive difference between 1/6 and the calculated probability.</span>
+        perc_error=(abs(1/6-prob_6));
+
+        <span class="comment">%Calculate percent error from 1/6th chance</span>
+        fprintf(<span class="string">'Percentage error from 1/6th chance is %.5f percent. \n'</span>,perc_error)
+</pre><h2 id="9">Problem 2</h2><pre class="codeinput">    <span class="comment">%If 2 is selected, do problem 2</span>
+</pre><pre class="codeinput">    <span class="keyword">case</span>(2)
+</pre><pre class="codeinput">        <span class="comment">%%%%%%%%%%%%%%</span>
+        <span class="comment">% Problem 2  %</span>
+        <span class="comment">%%%%%%%%%%%%%%</span>
+</pre><h2 id="12">Housekeeping</h2><pre class="codeinput">        clear;
+</pre><h2 id="13">Setup</h2><pre class="codeinput">        <span class="comment">%Set time interval</span>
+        t_=0:0.001:10;
+        <span class="comment">% As a note, the variable was named t_ in order to prevent collisions</span>
+        <span class="comment">% with the third problem</span>
+
+        <span class="comment">%Define function</span>
+        v_s=3*exp(-t_./3).*sin(pi./t_);
+
+        <span class="comment">%If a value in the vector is less than zero, set it equal to zero</span>
+        v_s(v_s&lt;0)=0;
+
+        <span class="comment">%Plot graph</span>
+        plot(t_, v_s)
+
+        <span class="comment">%Add pretty stuff to graph</span>
+        xlabel(<span class="string">'Time'</span>)
+        ylabel(<span class="string">'Voltage'</span>)
+        grid <span class="string">on</span>
+        title(<span class="string">'Voltage Across resistor WRT Time'</span>)
+</pre><h2 id="14">Problem 3</h2><pre class="codeinput">    <span class="keyword">case</span>(3)
+        <span class="comment">%%%%%%%%%%%%%%</span>
+        <span class="comment">%  Problem 3 %</span>
+        <span class="comment">%%%%%%%%%%%%%%</span>
+        clear;
+
+        <span class="comment">%Set given variables</span>
+
+        <span class="comment">%Initial speed</span>
+        v_0=20; <span class="comment">%meters per second</span>
+
+        <span class="comment">%Initial angle</span>
+        theta=40; <span class="comment">%degrees</span>
+
+        <span class="comment">%Acceleration due to gravity</span>
+        g=9.8; <span class="comment">%meters per second squared</span>
+
+        <span class="comment">%Time step</span>
+        dt=0.001;
+        <span class="comment">%Create time vector</span>
+        t=0:dt:3;
+
+
+        <span class="comment">%Create height vector</span>
+        h=v_0.*t*sind(theta)-(g.*t.^2)./2;
+
+        <span class="comment">%Create speed vector</span>
+        v=sqrt(v_0^2-2*v_0*g.*t*sind(theta)+g^2.*t.^2);
+
+        <span class="comment">%Plot left axis of height and time</span>
+        yyaxis <span class="string">left</span>
+        plot(t,h)
+        xlabel(<span class="string">'Time (s)'</span>)
+        ylabel(<span class="string">'Height (m)'</span>)
+
+        <span class="comment">%Plot right axis of speed and time</span>
+        yyaxis <span class="string">right</span>
+        plot(t,v)
+        ylabel(<span class="string">'Speed (m/s)'</span>)
+
+
+        <span class="comment">%Find all times when height is no less than 6 meters AND speed is less</span>
+        <span class="comment">%than 16 meters per second</span>
+
+        <span class="comment">%Set all times that meet this condition to vector k</span>
+        k=find(h&gt;=6 &amp; v&lt;=16);
+
+        <span class="comment">%Calculate time frame</span>
+        k=k.*dt;
+
+        <span class="comment">%Print Time frame</span>
+        true_start=k(1);
+        true_end=k(end);
+
+        <span class="comment">%Print out requested information.</span>
+        fprintf(<span class="string">'The ball satisfies the given conditions from %.2f seconds to %.2f seconds. \n'</span>, true_start, true_end)
+
+
+
+        <span class="keyword">otherwise</span>
+</pre><pre class="codeinput">            disp(<span class="string">'BAD TA! yOu dIDnt FolLoW tHe rULeS'</span>)
+        <span class="comment">%End switch statement</span>
+    <span class="keyword">end</span>
+</pre><pre class="codeoutput">Which problem would you like to try?
+1. Die Roll
+2. Electrical current
+3. Flying ball
+</pre><pre class="codeoutput error">Error using input
+Cannot call INPUT from EVALC.
+
+Error in HW3P1 (line 47)
+choice=input('Enter your choice number here&gt;&gt;&gt; ');
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%    _     _      _     _      _     _      _     _      _     _
+%   (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)    (c).-.(c)
+%    / ._. \      / ._. \      / ._. \      / ._. \      / ._. \ 
+%  __\( Y )/__  __\( Y )/__  __\( Y )/__  __\( Y )/__  __\( Y )/__
+% (_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)(_.-/'-'\-._)
+%    || O ||      || O ||      || O ||      || O ||      || O ||   
+%  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._  _.' `-' '._  
+% (.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)(.-./`-'\.-.)
+%  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  `-'     `-'  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Author:  Matt Fletcher                                          %
+%    Class:  ENG101, Fall, 2017                                     %
+%  Helpers:  None                                                   %
+%                                                                   %
+%  Program:  ENG101 Homework 3, Problem 1                           %
+% Due Date:  18 Sep 2017                                            %
+%                                                                   %
+% Language:  MatLab                                                 %
+%      IDE:  MatLab R2017a                                          %
+%                                                                   %
+% Purpose:   Simulate die rolls                                     %
+%                                                                   %
+%                                                                   %
+%                                                                   %
+%   "Undocumented features": None.                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Important Note for grader    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%I wrote all 3 problems with a switch statement to help 
+% prevent problems caused by multiple program's variables 
+%To use each program, simply follow the instructions prompted at the
+%beginning. 
+
+
+clear;
+clc;
+
+%% Problem Selector
+disp('Which problem would you like to try?')
+disp('1. Die Roll')
+disp('2. Electrical current')
+disp('3. Flying ball')
+choice=input('Enter your choice number here>>> ');
+    %Switch statement
+    switch(choice);    
+
+        
+        
+        
+%% Problem 1        
+    %If 1 is selected, do problem 1
+    case(1)    
+        %%%%%%%%%%%%%%%%%
+        %   Problem 1   %
+        %%%%%%%%%%%%%%%%%
+
+        %% Housekeeping
+        clear;
+        %% Computations
+
+        %Cue user to input the number of trials they would like to try
+
+        n_trials=input('How many trials >>  ');
+
+
+
+        %Generate random die rolls"
+        die_roll=randi(6,[1,n_trials]);
+
+        %Calculate the probability of rolling a 6
+        prob_6=sum(die_roll==6)/n_trials;
+
+        %% Output
+        %Display the number of rolls:
+        fprintf('Number of rolls: %d rolls. \n', n_trials)
+        
+
+        %Display the probability of getting a 6
+        fprintf('Probability of a rolling a 6: %.5f percent. \n', prob_6)
+        
+        
+        %Finds the positive difference between 1/6 and the calculated probability.
+        perc_error=(abs(1/6-prob_6));
+        
+        %Calculate percent error from 1/6th chance
+        fprintf('Percentage error from 1/6th chance is %.5f percent. \n',perc_error)
+        
+
+%% Problem 2
+    %If 2 is selected, do problem 2
+    case(2)
+        %%%%%%%%%%%%%%
+        % Problem 2  %
+        %%%%%%%%%%%%%% 
+
+        %% Housekeeping 
+        clear;
+        
+
+        %% Setup 
+        %Set time interval
+        t_=0:0.001:10;
+        % As a note, the variable was named t_ in order to prevent collisions 
+        % with the third problem
+        
+        %Define function
+        v_s=3*exp(-t_./3).*sin(pi./t_);
+        
+        %If a value in the vector is less than zero, set it equal to zero
+        v_s(v_s<0)=0;
+
+        %Plot graph
+        plot(t_, v_s)
+        
+        %Add pretty stuff to graph
+        xlabel('Time')
+        ylabel('Voltage')
+        grid on
+        title('Voltage Across resistor WRT Time')
+
+%% Problem 3
+    case(3)
+        %%%%%%%%%%%%%%
+        %  Problem 3 %
+        %%%%%%%%%%%%%%
+        clear;
+        
+        %Set given variables 
+        
+        %Initial speed
+        v_0=20; %meters per second
+        
+        %Initial angle
+        theta=40; %degrees
+        
+        %Acceleration due to gravity
+        g=9.8; %meters per second squared 
+        
+        %Time step
+        dt=0.001;
+        %Create time vector
+        t=0:dt:3;
+        
+        
+        %Create height vector
+        h=v_0.*t*sind(theta)-(g.*t.^2)./2;
+        
+        %Create speed vector 
+        v=sqrt(v_0^2-2*v_0*g.*t*sind(theta)+g^2.*t.^2);
+        
+        %Plot left axis of height and time
+        yyaxis left
+        plot(t,h)
+        xlabel('Time (s)')
+        ylabel('Height (m)')
+        
+        %Plot right axis of speed and time 
+        yyaxis right
+        plot(t,v)
+        ylabel('Speed (m/s)')
+        
+        
+        %Find all times when height is no less than 6 meters AND speed is less
+        %than 16 meters per second 
+        
+        %Set all times that meet this condition to vector k
+        k=find(h>=6 & v<=16);
+        
+        %Calculate time frame
+        k=k.*dt;
+        
+        %Print Time frame 
+        true_start=k(1);
+        true_end=k(end);
+        
+        %Print out requested information. 
+        fprintf('The ball satisfies the given conditions from %.2f seconds to %.2f seconds. \n', true_start, true_end)
+               
+
+        
+        otherwise
+            disp('BAD TA! yOu dIDnt FolLoW tHe rULeS') 
+        %End switch statement    
+    end
+##### SOURCE END #####
+--></body></html>
