@@ -100,7 +100,7 @@ for idx = 0:num_trials(end)
     end
 end
 
-
+%% Problem 2 with while loop
 %While loop to calculate required number of iterations until
 %the error is less than the desired amount.
 clear;
